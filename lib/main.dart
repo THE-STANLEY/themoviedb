@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:themoviedb/Theme/app_colors.dart';
 import 'package:themoviedb/widgets/auth/auth_widget.dart';
+import 'package:themoviedb/widgets/main_screen/main_screen_widget.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget{
   const MyApp({super.key});
 
   @override
@@ -14,10 +16,19 @@ class MyApp extends StatelessWidget {
       title: 'themoviedb',
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color.fromRGBO(3, 37, 65, 1)
+          backgroundColor: AppColors.mainDarkBlue,
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: AppColors.mainDarkBlue,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.grey,
         ),
       ),
-      home: const AuthWidget(),
+      routes: {
+        '/auth': (context) => const AuthWidget(),
+        '/main_screen': (context) => const MainScreenWidget(),
+      },
+      initialRoute: '/auth',
     );
   }
 }
